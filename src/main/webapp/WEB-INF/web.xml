@@ -59,4 +59,21 @@
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/api/user</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>EventPackageServlet</servlet-name>
+        <servlet-class>com.vncafe.servlet.EventPackageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EventPackageServlet</servlet-name>
+        <url-pattern>/api/eventpackage</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EventBookingServlet</servlet-name>
+        <servlet-class>com.vncafe.servlet.EventBookingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EventBookingServlet</servlet-name>
+        <url-pattern>/api/eventbooking</url-pattern>
+        <url-pattern>/api/eventbooking/*</url-pattern>
+    </servlet-mapping>
 </web-app>
