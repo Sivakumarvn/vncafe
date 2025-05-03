@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome to VN Cafe</title>
+    <link rel="icon" type="image/x-icon" href="/vncafe/vncafe/favicon_io/favicon.ico">
+    <link rel="stylesheet" href="/vncafe/vncafe/pages/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  </head>
+<body class="bg-light d-flex flex-column min-vh-100">
+    <!-- Background Video -->
+<video autoplay muted loop playsinline class="position-fixed w-100 h-100 object-fit-cover z-n1 bg-video">
+    <source src="/vncafe/vncafe/assets/coffee-video.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
+  <div class="overlay"></div>
+
+    <!-- Header / Navbar -->
+    <header class="header sticky-top">
+      <nav class="navbar navbar-expand-lg bg-white shadow py-4">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img class="svglogo align-items-center" src="/vncafe/vncafe/assets/img/Vn cafe big.png" height="50" width="50" />
+            <img class="svglogo" src="/vncafe/vncafe/assets/VNcafe1.svg" alt="VN Cafe Logo" />
+          </a>
+        </div>
+      </nav>
+    </header>
+  
+    <!-- Login/Signup Card -->
+    <main class="flex-grow-1 d-flex align-items-center justify-content-center py-5">
+      <div class="card shadow p-4 rounded-4 glass-card" style="max-width: 450px; width: 100%;">
+        <ul class="nav nav-tabs mb-3" id="authTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login"
+              type="button" role="tab">Login</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup"
+              type="button" role="tab">Signup</button>
+          </li>
+        </ul>
+  
+        <div class="tab-content" id="authTabContent">
+          <!-- Login Form -->
+          <div class="tab-pane fade show active" id="login" role="tabpanel">
+            <form method="POST">
+              <div class="mb-3">
+                <label for="loginUsername" class="form-label">Email</label>
+                <input type="text" class="form-control" id="loginUsername" name="username" required />
+              </div>
+              <div class="mb-3">
+                <label for="loginPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="loginPassword" name="password" required />
+              </div>
+              <p id="errorMsg" class="text-danger"></p>
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+          </div>
+  
+          <!-- Signup Form -->
+          <div class="tab-pane fade" id="signup" role="tabpanel">
+            <form method="POST">
+              <p id="errorMsg" class="text-danger"> </p>
+                <div class="mb-3">
+                  <label for="signupUsername" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="signupUsername" name="username" required />
+                </div>
+              <div class="mb-3">
+                <label for="signupEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="signupEmail" name="email" required />
+              </div>
+              <p id="mailErrorMsg" class="text-danger"> </p>
+              <div class="mb-3">
+                <label for="signupPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signupPassword" name="password" required />
+              </div>
+              <div class="mb-3">
+                <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="signupConfirmPassword" name="password" required />
+              </div>
+              <p id="pwdErrorMsg" class="text-danger"> </p>
+              <button type="submit" class="btn btn-success w-100">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="/vncafe/vncafe/pages/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+  </body>
+  
+
+</html>

@@ -1,0 +1,12 @@
+<svg width="160" height="50" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <filter id="svg_1_blur">
+   <feGaussianBlur in="SourceGraphic" stdDeviation="0"/>
+  </filter>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <text fill="#444444" stroke="#000000" stroke-width="0" x="313.33332" y="249.99999" id="svg_1" font-size="31" font-family="Gluten" text-anchor="start" xml:space="preserve" font-weight="bold" filter="url(#svg_1_blur)">VN Cafe.</text>
+  <text font-weight="bold" transform="matrix(1.34958 0 0 1.58945 -12.1043 -15.471)" stroke="#000" xml:space="preserve" text-anchor="start" font-family="'Gluten'" font-size="24" id="svg_3" y="31.42766" x="13.92903" stroke-width="0" fill="#000000">VN Cafe .</text>
+ </g>
+</svg>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome to VN Cafe</title>
+    <link rel="icon" type="image/x-icon" href="/vncafe/vncafe/favicon_io/favicon.ico">
+    <link rel="stylesheet" href="/vncafe/vncafe/pages/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+</head>
+
+<body>
+    <header class="header sticky-top">
+        <!-- Nav Bar section -->
+        <nav class="navbar navbar-expand-lg bg-white shadow sticky-top py-4">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img class="svglogo align-items-center" src="/vncafe/vncafe/assets/img/Vn cafe big.png" height="50"
+                        width="50" />
+                    <img class="svglogo" src="/vncafe/vncafe/assets/VNcafe1.svg" alt="" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-flex justify-content-md-between" id="navbarNav">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item">
+                            <a class="nav-link mx-3" href="/vncafe/vncafe/pages/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-3" href="/vncafe/vncafe/pages/menu.html">Menu</a> <!--menu.html -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-3" href="/vncafe/vncafe/pages/events.html">Event</a>
+                            <!--event.html -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-3" href="/vncafe/vncafe/pages/about.html">About</a> <!--about.html -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-3" href="/vncafe/vncafe/pages/contact.html">Contact</a>
+                            <!--contact.html -->
+                        </li>
+                    </ul>
+                    <!--          <div class="navProfile w-100" style="display: block; position: relative;">-->
+                    <!--            <button id="profileToggle" class="btn btn-light">-->
+                    <!--              <img src="/vncafe/vncafe/assets/person-circle.svg" width="40" height="40" class="rounded-circle" alt="Profile">-->
+                    <!--            </button>-->
+                    <!--            <div id="profileCard" style="display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #ddd; padding: 10px; border-radius: 8px; z-index: 1000;"></div>-->
+
+                    <div class='navProfile d-none' id="navProfileBtn">
+                        <img role="button" tabindex="0" src="/vncafe/vncafe/assets/person-circle.svg" alt="Person" />
+
+                    </div>
+                    <div class="signDiv d-block" id="signDivBtn">
+                        <a href="/vncafe/vncafe/pages/profile_accounts.html"
+                            class="btn navbar-btn signBtn"><span>SignIn</span></a>
+                        <a href="/vncafe/vncafe/pages/profile_accounts.html"
+                            class="btn btn-brand signBtn"><span>SignUp</span></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h1 class="card-title">Checkout</h1>
+                    </div>
+                    <div class="card-body payment-summary">
+                        <div id="cart-summary">
+                            <h2>Your Cart</h2>
+                            <ul id="cart-items">
+                            </ul>
+                            <!-- <div class="cart-total">
+                                <span>Total:</span>
+                                <span id="cart-total-price">$0.00</span>
+                            </div> -->
+                        </div>
+
+                        <h2 class="mb-3">Select Payment Method</h2>
+                        <div id="paymentMethods">
+                            <div class="payment-method" data-method="creditcard">
+                                <i class="fab fa-cc-mastercard fa-lg"></i>
+                                <span>Credit Card</span>
+                            </div>
+                            <div class="payment-method" data-method="debitcard">
+                                <i class="fas fa-credit-card fa-lg"></i>
+                                <span>Debit Card</span>
+                            </div>
+                            <div class="payment-method" data-method="upi">
+                                <img src="..\assets\img\upi-icon.png">
+                                <span>UPI</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedPaymentMethod" name="paymentMethod" required>
+                        <div class="text-danger" id="paymentMethodError" style="display: none;">
+                            Please select a payment method.
+                        </div>
+
+                        <div id="creditCardFields" style="display: none;">
+                            <h3 class="mt-4 mb-3">Credit Card Details</h3>
+                            <div class="mb-3">
+                                <label for="cc-name" class="form-label">Name on card</label>
+                                <input type="text" class="form-control" id="cc-name" required>
+                                <div class="invalid-feedback">Name on card is required</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cc-number" class="form-label">Credit card number</label>
+                                <input type="text" class="form-control" id="cc-number" placeholder="xxxx-xxxx-xxxx-xxxx"
+                                    required>
+                                <div class="invalid-feedback">Valid credit card number is required</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="cc-expiration" class="form-label">Expiration</label>
+                                    <input type="text" class="form-control" id="cc-expiration" placeholder="MM/YY"
+                                        required>
+                                    <div class="invalid-feedback">Expiration date required</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cc-cvv" class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="cc-cvv" required>
+                                    <div class="invalid-feedback">Security code required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="debitCardFields" style="display: none;">
+                            <h3 class="mt-4 mb-3">Debit Card Details</h3>
+                            <div class="mb-3">
+                                <label for="dc-name" class="form-label">Name on card</label>
+                                <input type="text" class="form-control" id="dc-name" required>
+                                <div class="invalid-feedback">Name on card is required</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="dc-number" class="form-label">Debit card number</label>
+                                <input type="text" class="form-control" id="dc-number" placeholder="xxxx-xxxx-xxxx-xxxx"
+                                    required>
+                                <div class="invalid-feedback">Valid debit card number is required</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="dc-expiration" class="form-label">Expiration</label>
+                                    <input type="text" class="form-control" id="dc-expiration" placeholder="MM/YY"
+                                        required>
+                                    <div class="invalid-feedback">Expiration date required</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="dc-cvv" class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="dc-cvv" required>
+                                    <div class="invalid-feedback">Security code required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="upiFields" style="display: none;">
+                            <h3 class="mt-4 mb-3">UPI Details</h3>
+                            <div class="mb-3">
+                                <label for="upi-id" class="form-label">UPI ID</label>
+                                <input type="text" class="form-control" id="upi-id" placeholder="yourname@bank"
+                                    required>
+                                <div class="invalid-feedback">Please enter your UPI ID.</div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                        <button class="btn btn-primary-flipkart w-100" id="placeOrderBtn" type="submit">Place
+                            Order</button>
+                        <div id="loading" class="loading-animation" style="display: none;">
+                            Processing...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card order-summary-card">
+                    <div class="card-body">
+                        <h2 class="order-summary-title">Order Summary</h2>
+                        <div id="orderSummary">
+                        </div>
+                        <!-- <hr class="my-3">
+                        <div class="summary-item">
+                            <span>Shipping</span>
+                            <span>$5.00</span>
+                        </div> -->
+                        <hr class="my-3">
+                        <div class="summary-item summary-total">
+                            <span>Total</span>
+                            <span id="orderTotal">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const paymentMethods = document.getElementById('paymentMethods');
+            const selectedPaymentMethodInput = document.getElementById('selectedPaymentMethod');
+            const paymentMethodError = document.getElementById('paymentMethodError');
+            const creditCardFields = document.getElementById('creditCardFields');
+            const debitCardFields = document.getElementById('debitCardFields');
+            const upiFields = document.getElementById('upiFields');
+            const placeOrderBtn = document.getElementById('placeOrderBtn');
+            const loadingDiv = document.getElementById('loading');
+
+            // Function to show/hide payment fields
+            function showPaymentFields(method) {
+                creditCardFields.style.display = 'none';
+                debitCardFields.style.display = 'none';
+                upiFields.style.display = 'none';
+
+                if (method === 'creditcard') {
+                    creditCardFields.style.display = 'block';
+                } else if (method === 'debitcard') {
+                    debitCardFields.style.display = 'block';
+                } else if (method === 'upi') {
+                    upiFields.style.display = 'block';
+                }
+            }
+
+            // Event listener for selecting a payment method
+            paymentMethods.addEventListener('click', function (event) {
+                const target = event.target.closest('.payment-method');
+                if (target) {
+                    const method = target.getAttribute('data-method');
+                    selectedPaymentMethodInput.value = method;
+                    paymentMethodError.style.display = 'none';
+                    showPaymentFields(method);
+
+
+                    document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
+                    target.classList.add('selected');
+                }
+            });
+            function validateRequiredFields(containerId) {
+                const container = document.getElementById(containerId);
+                if (!container) return true;
+
+                let isValid = true;
+                const requiredFields = container.querySelectorAll('input[required]');
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('is-invalid');
+                    } else {
+                        field.classList.remove('is-invalid');
+                    }
+                });
+                return isValid;
+            }
+
+            function validateCreditCardNumber() {
+                const ccNumberInput = document.getElementById('cc-number');
+                if (!creditCardFields.style.display || creditCardFields.style.display === 'none') return true;
+
+                const cardNumber = ccNumberInput.value.replace(/\D/g, '');
+                if (!/^\d{13,19}$/.test(cardNumber)) {
+                    ccNumberInput.classList.add('is-invalid');
+                    const feedbackDiv = ccNumberInput.nextElementSibling;
+                    if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = 'Please enter a valid credit card number.';
+                    }
+                    return false;
+                } else {
+                    ccNumberInput.classList.remove('is-invalid');
+                    return true;
+                }
+            }
+
+            function validateDebitCardNumber() {
+                const dcNumberInput = document.getElementById('dc-number');
+                if (!debitCardFields.style.display || debitCardFields.style.display === 'none') return true;
+
+                const cardNumber = dcNumberInput.value.replace(/\D/g, '');
+                if (!/^\d{16}$/.test(cardNumber)) {
+                    dcNumberInput.classList.add('is-invalid');
+                    const feedbackDiv = dcNumberInput.nextElementSibling;
+                    if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = 'Please enter a valid debit card number.';
+                    }
+                    return false;
+                } else {
+                    dcNumberInput.classList.remove('is-invalid');
+                    return true;
+                }
+            }
+
+
+            function validateExpiration(inputId) {
+                const expiryInput = document.getElementById(inputId);
+                if (!expiryInput || expiryInput.closest('[style*="display: none;"]')) return true;
+
+                const expiryValue = expiryInput.value.trim();
+                if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryValue)) {
+                    expiryInput.classList.add('is-invalid');
+                    const feedbackDiv = expiryInput.nextElementSibling;
+                    if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = 'Please enter a valid expiration date (MM/YY).';
+                    }
+                    return false;
+                } else {
+                    expiryInput.classList.remove('is-invalid');
+                    return true;
+                }
+            }
+
+            function validateCVV(inputId) {
+                const cvvInput = document.getElementById(inputId);
+                if (!cvvInput || cvvInput.closest('[style*="display: none;"]')) return true;
+
+                const cvvValue = cvvInput.value.trim();
+                if (!/^\d{3,4}$/.test(cvvValue)) {
+                    cvvInput.classList.add('is-invalid');
+                    const feedbackDiv = cvvInput.nextElementSibling;
+                    if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = 'Please enter a valid CVV.';
+                    }
+                    return false;
+                } else {
+                    cvvInput.classList.remove('is-invalid');
+                    return true;
+                }
+            }
+
+            function validateUPIID() {
+                const upiIdInput = document.getElementById('upi-id');
+                if (!upiFields.style.display || upiFields.style.display === 'none') return true;
+
+                const upiIdValue = upiIdInput.value.trim();
+                if (!/^[a-zA-Z0-9.\-_]{2,}@[a-zA-Z]{2,}$/.test(upiIdValue)) {
+                    upiIdInput.classList.add('is-invalid');
+                    const feedbackDiv = upiIdInput.nextElementSibling;
+                    if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
+                        feedbackDiv.textContent = 'Please enter a valid UPI ID (e.g., yourname@bank).';
+                    }
+                    return false;
+                } else {
+                    upiIdInput.classList.remove('is-invalid');
+                    return true;
+                }
+            }
+
+            function showPaymentSuccessModal() {
+                const modalHtml = `
+            <div class="modal fade" id="paymentSuccessModal" tabindex="-1" aria-labelledby="paymentSuccessModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success text-white">
+                            <h5 class="modal-title" id="paymentSuccessModalLabel">Payment Successful!</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                            <p class="mb-0">Your order has been placed successfully.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a href="../pages/index.html" class="btn btn-primary-flipkart">Go to Homepage</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+                const paymentSuccessModal = new bootstrap.Modal(document.getElementById('paymentSuccessModal'));
+                paymentSuccessModal.show();
+
+                document.getElementById('paymentSuccessModal').addEventListener('hidden.bs.modal', function () {
+                    this.remove();
+                });
+            }
+
+            // Event listener for the Place Order button
+            placeOrderBtn.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                let isPaymentValid = true;
+                const selectedMethod = selectedPaymentMethodInput.value;
+
+                if (!selectedMethod) {
+                    paymentMethodError.style.display = 'block';
+                    isPaymentValid = false;
+                } else {
+                    paymentMethodError.style.display = 'none';
+                    if (selectedMethod === 'creditcard') {
+                        isPaymentValid = validateRequiredFields('creditCardFields') && validateCreditCardNumber() && validateExpiration('cc-expiration') && validateCVV('cc-cvv');
+                    } else if (selectedMethod === 'debitcard') {
+                        isPaymentValid = validateRequiredFields('debitCardFields') && validateDebitCardNumber() && validateExpiration('dc-expiration') && validateCVV('dc-cvv');
+                    } else if (selectedMethod === 'upi') {
+                        isPaymentValid = validateRequiredFields('upiFields') && validateUPIID();
+                    }
+                }
+
+                if (isPaymentValid) {
+                    // Simulate order processing
+                    placeOrderBtn.style.display = 'none';
+                    loadingDiv.style.display = 'block';
+                    setTimeout(function () {
+                        loadingDiv.style.display = 'none';
+                        // Instead of an alert, show the success modal
+                        showPaymentSuccessModal();
+                        // Optionally redirect to a thank you page or clear the cart
+                    }, 2000);
+                } else {
+                    // If validation fails, the invalid feedback messages will be displayed
+                }
+            });
+        });
+    </script>
+    <footer class="bg-light text-light pt-5 pb-4">
+        <div class="container text-center text-md-start">
+            <div class="row">
+
+                <!-- Logo & About -->
+                <div class="col-md-3">
+                    <a class="navbar-brand" href="#">
+                        <img class="svglogo" src="../assets/img/Vn cafe big.png" height="60" width="60" />
+                        <img class="svglogo pt-2" src="../assets/VNcafe1.svg" />
+                    </a>
+                    <!-- <p class="text-muted">Delivering perfectly roasted coffee with rich, authentic flavor.</p> -->
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-muted">Quick Links</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><a href="index.html" class="text-muted text-decoration-none">Home</a></li>
+                        <li><a href="menu.html" class="text-muted text-decoration-none">Menu</a></li>
+                        <li><a href="event.html" class="text-muted text-decoration-none">Event</a></li>
+                        <li><a href="about.html" class="text-muted text-decoration-none">About</a></li>
+                        <li><a href="contact.html" class="text-muted text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-muted">Contact Us</h5>
+                    <p class="text-muted">
+                        📍 123 Coffee St, City, Country <br>
+                        📞 +123 456 7890 <br>
+                        📧 hello@vncafe.com
+                    </p>
+                </div>
+
+                <!-- Newsletter & Social Media -->
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-muted">Stay Connected</h5>
+                    <div class="d-flex gap-3 mb-3">
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-twitter"></i></a>
+                    </div>
+                    <form>
+                        <input type="email" class="form-control mb-2" placeholder="Enter your email">
+                        <button class="btn btn-warning w-100">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-muted mt-4 border-top pt-3">
+                &copy; 2025 VN Cafe. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

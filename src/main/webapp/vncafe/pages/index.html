@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome to VN Cafe</title>
+  <link rel="icon" type="image/x-icon" href="/vncafe/vncafe/favicon_io/favicon.ico">
+  <link rel="stylesheet" href="/vncafe/vncafe/pages/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+</head>
+
+<body>
+  <header class="header sticky-top">
+    <!-- Nav Bar section -->
+    <nav class="navbar navbar-expand-lg bg-white shadow sticky-top py-4">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img class="svglogo align-items-center" src="/vncafe/vncafe/assets/img/Vn cafe big.png" height="50" width="50" />
+          <img class="svglogo" src="/vncafe/vncafe/assets/VNcafe1.svg" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex justify-content-md-between" id="navbarNav">
+          <ul class="navbar-nav ">
+            <li class="nav-item">
+              <a class="nav-link mx-3" href="/vncafe/vncafe/pages/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-3"  href="/vncafe/vncafe/pages/menu.html">Menu</a> <!--menu.html -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-3"  href="/vncafe/vncafe/pages/events.html">Event</a> <!--event.html -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-3"  href="/vncafe/vncafe/pages/about.html">About</a> <!--about.html -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-3"  href="/vncafe/vncafe/pages/contact.html">Contact</a> <!--contact.html -->
+            </li>
+          </ul>
+          <!--          <div class="navProfile w-100" style="display: block; position: relative;">-->
+<!--            <button id="profileToggle" class="btn btn-light">-->
+<!--              <img src="/vncafe/vncafe/assets/person-circle.svg" width="40" height="40" class="rounded-circle" alt="Profile">-->
+<!--            </button>-->
+<!--            <div id="profileCard" style="display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #ddd; padding: 10px; border-radius: 8px; z-index: 1000;"></div>-->
+<!--          </div>-->
+
+              <div class='navProfile d-none' id="navProfileBtn">
+                  <img role="button" tabindex="0" src="/vncafe/vncafe/assets/person-circle.svg" alt="Person" />
+
+              </div>
+              <div class="signDiv d-block" id="signDivBtn">
+                <a href="/vncafe/vncafe/pages/profile_accounts.html" class="btn navbar-btn signBtn" ><span>SignIn</span></a>
+                <a href="/vncafe/vncafe/pages/profile_accounts.html" class="btn btn-brand signBtn" ><span>SignUp</span></a>
+              </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="main">
+    <!-- Hero Section -->
+    <section id="hero" class="hero d-flex justify-content-center align-items-center">
+      <div class="container">
+        <div class="row gy-4 justify-content-center justify-content-lg-between">
+          <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <h1 data-aos="fade-right" data-aos-delay="200" class="heroh1">
+              Mugs and hugs make <br />
+              everything better!
+            </h1>
+            <p data-aos="fade-up" data-aos-delay="100" class="herop">
+              Great coffee, cozy vibes, and snacks that disappear too fast! Drop
+              in for a sip, stay for the good times.
+            </p>
+            <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+              <a href="#orderNow" class="btn orderBtn allBtn" ><span>Order Now</span></a>
+            </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="100">
+            <img src="/vncafe/vncafe/assets/img/heropage.png" class="img-fluid heroimg" alt="" />
+        </div>
+        </div>
+      </div>
+    </section>
+    <!-- carousel -->
+    <section>
+      <div>
+        <h5 class="sec2h5">OAK ROASTED COFFEE BEANS</h5>
+        <div>
+          <h3 class="sec2h3">from our handmade</h3>
+          <h3 class="sec2h3">roasters to you</h3>
+        </div>
+
+        <p class=" sec2p">Experience the perfect blend of aroma and flavor with our premium coffee powder.
+          Sourced
+          from the finest beans and expertly roasted, each sip delivers rich, bold taste with a smooth finish. Whether
+          you crave a classic brew or a hint of indulgent flavors, our coffee powder is crafted to elevate your daily
+          cup. Wake up to perfection, one brew at a time.</p>
+        <button class="btn allBtn d-block mx-auto">Our Coffees</button>
+      </div>
+      <div class="container py-5">
+
+        <div class="carousel-wrapper">
+          <button class="arrow-btn arrow-left" id="prevBtn">‹</button>
+          <button class="arrow-btn arrow-right" id="nextBtn">›</button>
+
+          <div class="carousel-track" id="carouselTrack">
+            <!-- Carousel-card -->
+            <div class="carousel-card">
+              <div class="card">
+                <img src="/vncafe/vncafe/assets/img/gallery/coffee_powder/caramel flovur.png"
+                  class="object-fit-cover w-100 h-100 card-img-top img-fluid" alt="Caramel Flavour">
+                <div class="card-body">
+                  <h5 class="card-title">Caramel Flavour</h5>
+                  <p class="card-text">A smooth caramel blend with rich coffee tones.</p>
+                  <a href="/vncafe/vncafe/pages/menu.html#ownProduct" class="btn allBtn d-block mx-auto">Explore</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-card">
+              <div class="card">
+                <img src="/vncafe/vncafe/assets/img/gallery/coffee_powder/Classic flovur.png"
+                  class="object-fit-cover w-100 h-100 card-img-top img-fluid" alt="Classic Flavour">
+                <div class="card-body">
+                  <h5 class="card-title">Classic Flavour</h5>
+                  <p class="card-text">Timeless classic roast for a perfect morning cup.</p>
+                  <a href="/vncafe/vncafe/pages/menu.html#ownProduct" class="btn allBtn d-block mx-auto">Explore</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-card">
+              <div class="card">
+                <img src="/vncafe/vncafe/assets/img/gallery/coffee_powder/fireside flovur.png"
+                  class="object-fit-cover w-100 h-100 card-img-top img-fluid " alt="Fireside Flavour">
+                <div class="card-body">
+                  <h5 class="card-title">Fireside Flavour</h5>
+                  <p class="card-text">Warm notes of spice and comfort in every sip.</p>
+                  <a href="/vncafe/vncafe/pages/menu.html#ownProduct" class="btn allBtn d-block mx-auto">Explore</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-card">
+              <div class="card">
+                <img src="/vncafe/vncafe/assets/img/gallery/coffee_powder/franch vanilla flovur.png"
+                  class="object-fit-cover w-100 h-100 card-img-top img-fluid" alt="French Vanilla">
+                <div class="card-body">
+                  <h5 class="card-title">French Vanilla</h5>
+                  <p class="card-text">A creamy vanilla infusion that’s irresistibly smooth.</p>
+                  <a href="/vncafe/vncafe/pages/menu.html#ownProduct" class="btn allBtn d-block mx-auto">Explore</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-card">
+              <div class="card">
+                <img src="/vncafe/vncafe/assets/img/gallery/coffee_powder/Hazenut flovur.png"
+                  class="object-fit-cover w-100 h-100 card-img-top img-fluid" alt="Hazelnut Flavour">
+                <div class="card-body">
+                  <h5 class="card-title">Hazelnut Flavour</h5>
+                  <p class="card-text">A nutty, rich experience for hazelnut lovers.</p>
+                  <a href="/vncafe/vncafe/pages/menu.html#ownProduct" class="btn allBtn d-block mx-auto">Explore</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-card">
+              <div class="card">
+                <img src="/vncafe/vncafe/assets/img/gallery/coffee_powder/irish cream flovur.png"
+                  class="object-fit-cover w-100 h-100 card-img-top img-fluid" alt="Irish Cream">
+                <div class="card-body">
+                  <h5 class="card-title">Irish Cream</h5>
+                  <p class="card-text">Creamy Irish notes with a smooth coffee finish.</p>
+                  <a href="/vncafe/vncafe/pages/menu.html#ownProduct" class="btn allBtn d-block mx-auto">Explore</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-card">
+              <div class="card">
+                <img src="/vncafe/vncafe/assets/img/gallery/coffee_powder/mocha flovur.png"
+                  class="object-fit-cover w-100 h-100 card-img-top img-fluid" alt="Mocha Flavour">
+                <div class="card-body">
+                  <h5 class="card-title">Mocha Flavour</h5>
+                  <p class="card-text">Chocolatey richness combined with bold coffee.</p>
+                  <a href="/vncafe/vncafe/pages/menu.html#ownProduct" class="btn allBtn d-block mx-auto">Explore</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-light text-light pt-5 pb-4 ">
+    <div class="container text-center text-md-start">
+      <div class="row">
+
+        <!-- Logo & About -->
+        <div class="col-md-3">
+          <a class="navbar-brand" href="#">
+            <img class="svglogo" src="/vncafe/vncafe/assets/img/Vn cafe big.png" height="60" width="60" />
+            <img class="svglogo pt-2" src="/vncafe/vncafe/assets/VNcafe1.svg" />
+          </a>
+          <!-- <p class="text-muted">Delivering perfectly roasted coffee with rich, authentic flavor.</p> -->
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-md-3">
+          <h5 class="fw-bold text-muted">Quick Links</h5>
+          <ul class="list-unstyled text-muted">
+            <li><a href="/vncafe/vncafe/pages/index.html" class="text-muted text-decoration-none">Home</a></li>
+            <li><a href="/vncafe/vncafe/pages/menu.html" class="text-muted text-decoration-none">Menu</a></li>
+            <li><a href="/vncafe/vncafe/pages/events.html" class="text-muted text-decoration-none">Event</a></li>
+            <li><a href="/vncafe/vncafe/pages/about.html" class="text-muted text-decoration-none">About</a></li>
+            <li><a href="/vncafe/vncafe/pages/contact.html" class="text-muted text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-md-3">
+          <h5 class="fw-bold text-muted">Contact Us</h5>
+          <p class="text-muted">
+            📍 123 Coffee St, City, Country <br>
+            📞 +123 456 7890 <br>
+            📧 hello@vncafe.com
+          </p>
+        </div>
+
+        <!-- Newsletter & Social Media -->
+        <div class="col-md-3">
+          <h5 class="fw-bold text-muted">Stay Connected</h5>
+          <div class="d-flex gap-3 mb-3">
+            <a href="#" class="text-muted fs-5"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-muted fs-5"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-muted fs-5"><i class="bi bi-twitter"></i></a>
+          </div>
+          <form>
+            <input type="email" class="form-control mb-2" placeholder="Enter your email">
+            <button class="btn btn-warning w-100">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-center text-muted mt-4 border-top pt-3">
+        &copy; 2025 VN Cafe. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  
+});
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="/vncafe/vncafe/pages/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+<!--  <script>-->
+<!--    window.onload = function() {-->
+<!--      const hash = window.location.hash;-->
+<!--      if (hash === "#ownProduct") {-->
+<!--        const tabTrigger = document.querySelector('button[data-bs-target="' + hash + '"]');-->
+<!--        if (tabTrigger) {-->
+<!--          var tab = new bootstrap.Tab(tabTrigger);-->
+<!--          tab.show();-->
+<!--        }-->
+<!--      }-->
+<!--    };-->
+<!--  </script>-->
+</body>
+
+</html>

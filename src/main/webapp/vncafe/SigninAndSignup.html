@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auth Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        .switch {
+            text-align: center;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 id="formTitle">Sign Up</h2>
+
+    <form id="authForm">
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <div id="confirmPasswordContainer">
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+        </div>
+        <button type="submit" id="submitBtn">Sign Up</button>
+        <p class="error" id="errorMsg"></p>
+    </form>
+
+    <p class="switch" id="toggleForm">Already have an account? Sign In</p>
+</div>
+
+<script>
+    const formTitle = document.getElementById('formTitle');
+    const authForm = document.getElementById('authForm');
+    const toggleForm = document.getElementById('toggleForm');
+    const usernameField = document.getElementById('username');
+    const emailField = document.getElementById('email');
+    const passwordField = document.getElementById('password');
+    const confirmPasswordField = document.getElementById('confirmPassword');
+    const confirmPasswordContainer = document.getElementById('confirmPasswordContainer');
+    const errorMsg = document.getElementById('errorMsg');
+    const submitBtn = document.getElementById('submitBtn');
+
+    let isSignUp = true;
+
+    function updateFormMode() {
+        if (isSignUp) {
+            formTitle.textContent = 'Sign Up';
+            submitBtn.textContent = 'Sign Up';
+            toggleForm.textContent = 'Already have an account? Sign In';
+            usernameField.style.display = 'block';
+            confirmPasswordContainer.style.display = 'block';
+
+            usernameField.required = true;
+            confirmPasswordField.required = true;
+        } else {
+            formTitle.textContent = 'Sign In';
+            submitBtn.textContent = 'Sign In';
+            toggleForm.textContent = "Don't have an account? Sign Up";
+            usernameField.style.display = 'none';
+            confirmPasswordContainer.style.display = 'none';
+
+            usernameField.required = false;
+            confirmPasswordField.required = false;
+        }
+
+        errorMsg.textContent = '';
+        authForm.reset();
+    }
+
+    toggleForm.addEventListener('click', () => {
+        isSignUp = !isSignUp;
+        updateFormMode();
+    });
+
+    authForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = emailField.value.trim();
+        const password = passwordField.value;
+        const username = usernameField.value.trim();
+        const confirmPassword = confirmPasswordField.value;
+
+        if (!email || !password || (isSignUp && (!username || !confirmPassword))) {
+            errorMsg.textContent = 'Please fill in all required fields.';
+            return;
+        }
+
+        if (isSignUp && password !== confirmPassword) {
+            errorMsg.textContent = 'Passwords do not match.';
+            return;
+        }
+
+        const endpoint = isSignUp ? '/vncafe/api/signup' : '/vncafe/api/signin';
+
+        const payload = isSignUp
+            ? { username, email, password }
+            : { email, password };
+
+        const formData = new URLSearchParams();
+        formData.append('input_data', JSON.stringify(payload));
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formData.toString()
+            });
+
+            const data = await response.json();
+            console.log('Server Response:', data);
+
+            if (!response.ok) {
+
+                throw new Error(data.message || 'Something went wrong');
+            }
+
+            alert(`${isSignUp ? 'Signup' : 'Signin'} successful!`);
+            // e.g. localStorage.setItem('token', data.token);
+        } catch (error) {
+            errorMsg.textContent = error.message;
+        }
+    });
+
+    // Initial setup
+    updateFormMode();
+</script>
+
+</body>
+</html>

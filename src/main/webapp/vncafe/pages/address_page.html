@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Welcome to VN Cafe</title>
+        <link rel="icon" type="image/x-icon" href="/vncafe/vncafe/favicon_io/favicon.ico">
+        <link rel="stylesheet" href="/vncafe/vncafe/pages/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@700&display=swap" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+      </head>
+<body>
+    <header class="header sticky-top">
+        <!-- Nav Bar section -->
+        <nav class="navbar navbar-expand-lg bg-white shadow sticky-top py-4">
+          <div class="container">
+            <a class="navbar-brand" href="#">
+              <img class="svglogo align-items-center" src="/vncafe/vncafe/assets/img/Vn cafe big.png" height="50" width="50" />
+              <img class="svglogo" src="/vncafe/vncafe/assets/VNcafe1.svg" alt="" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content-md-between" id="navbarNav">
+              <ul class="navbar-nav ">
+                <li class="nav-item">
+                  <a class="nav-link mx-3" href="/vncafe/vncafe/pages/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-3"  href="/vncafe/vncafe/pages/menu.html">Menu</a> <!--menu.html -->
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-3"  href="/vncafe/vncafe/pages/events.html">Event</a> <!--event.html -->
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-3"  href="/vncafe/vncafe/pages/about.html">About</a> <!--about.html -->
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-3"  href="/vncafe/vncafe/pages/contact.html">Contact</a> <!--contact.html -->
+                </li>
+              </ul>
+              <!--          <div class="navProfile w-100" style="display: block; position: relative;">-->
+    <!--            <button id="profileToggle" class="btn btn-light">-->
+    <!--              <img src="/vncafe/vncafe/assets/person-circle.svg" width="40" height="40" class="rounded-circle" alt="Profile">-->
+    <!--            </button>-->
+    <!--            <div id="profileCard" style="display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #ddd; padding: 10px; border-radius: 8px; z-index: 1000;"></div>-->
+    <!--          </div>-->
+    
+                  <div class='navProfile d-none' id="navProfileBtn">
+                      <img role="button" tabindex="0" src="/vncafe/vncafe/assets/person-circle.svg" alt="Person" />
+    
+                  </div>
+                  <div class="signDiv d-block" id="signDivBtn">
+                    <a href="/vncafe/vncafe/pages/profile_accounts.html" class="btn navbar-btn signBtn" ><span>SignIn</span></a>
+                    <a href="/vncafe/vncafe/pages/profile_accounts.html" class="btn btn-brand signBtn" ><span>SignUp</span></a>
+                  </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="container1 my-5">
+        <h1>Address</h1>
+
+        <form id="addressForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="First and Last Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" placeholder="10-digit mobile number" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="pincode">Pincode</label>
+                    <input type="text" id="pincode" placeholder="Enter 6-digit pincode" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="locality">Locality</label>
+                    <input type="text" id="locality" placeholder="Street Name, Apartment/Building" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea id="address" rows="3" placeholder="House No., Building, Street, Area" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="landmark">Landmark (Optional)</label>
+                <input type="text" id="landmark" placeholder="e.g., Near Main Road, Opposite Mall">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="city">Town/City</label>
+                    <input type="text" id="city" >
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="state">State</label>
+                    <input type="text" id="state" >
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Address</button>
+            <button type="button" class="btn btn-secondary">Cancel</button>
+        </form>
+
+        <h2>Saved Addresses</h2>
+        <div id="savedAddressesList">
+            </div>
+    </div>
+
+     <!-- <script src="script.js"></script> -->
+        <script>document.addEventListener('DOMContentLoaded', function() {
+        const pincodeField = document.getElementById('pincode');
+        const cityField = document.getElementById('city');
+        const stateField = document.getElementById('state');
+        const addressForm = document.getElementById('addressForm');
+        const savedAddressesList = document.getElementById('savedAddressesList');
+    
+        // Sample saved addresses (replace with actual data fetching)
+        let savedAddresses = [
+            // {
+            //     name: 'John Doe',
+            //     mobile: '9876543210',
+            //     pincode: '110001',
+            //     locality: 'Connaught Place',
+            //     address: 'XYZ Building, ABC Road',
+            //     landmark: 'Near Central Park',
+            //     city: 'New Delhi',
+            //     state: 'Delhi',
+            //     type: 'Home'
+            // },
+            // {
+            //     name: 'Jane Smith',
+            //     mobile: '8765432190',
+            //     pincode: '560001',
+            //     locality: 'MG Road',
+            //     address: 'PQR Apartment, LMN Street',
+            //     landmark: 'Opposite Garuda Mall',
+            //     city: 'Bangalore',
+            //     state: 'Karnataka',
+            //     type: 'Work'
+            // }
+        ];
+    
+        // Function to display saved addresses
+        function renderSavedAddresses() {
+            savedAddressesList.innerHTML = '';
+            if (savedAddresses.length > 0) {
+                savedAddresses.forEach((address, index) => {
+                    const addressDiv = document.createElement('div');
+                    addressDiv.classList.add('saved-address-item');
+                    addressDiv.innerHTML = `
+                        <div class="address-details">
+                            <strong>${address.name} (${address.type})</strong><br>
+                            ${address.address}, ${address.locality}<br>
+                            ${address.city}, ${address.state} - ${address.pincode}<br>
+                            Mobile: ${address.mobile}
+                        </div>
+                        <div class="address-actions">
+                            <button onclick="editAddress(${index})">Edit</button>
+                            <button onclick="removeAddress(${index})">Remove</button>
+                            <button onclick="deliverHere(${index})">Deliver Here</button>
+                        </div>
+                    `;
+                    savedAddressesList.appendChild(addressDiv);
+                });
+            } else {
+                savedAddressesList.innerHTML = '<p>No saved addresses.</p>';
+            }
+        }
+    
+        // Simulate fetching city and state based on pincode (replace with API call)
+        pincodeField.addEventListener('input', function() {
+            const pincode = this.value;
+            if (pincode.length === 6 && /^[0-9]+$/.test(pincode)) {
+                // In a real application, you would make an API call here
+                // to get city and state based on the pincode.
+                // For this example, we'll use a simple mapping.
+                if (pincode.startsWith('110')) {
+                    cityField.value = 'New Delhi';
+                    stateField.value = 'Delhi';
+                } else if (pincode.startsWith('560')) {
+                    cityField.value = 'Bangalore';
+                    stateField.value = 'Karnataka';
+                } else if (pincode.startsWith('400')) {
+                    cityField.value = 'Mumbai';
+                    stateField.value = 'Maharashtra';
+                } else {
+                    cityField.value = '';
+                    stateField.value = '';
+                }
+            } else {
+                cityField.value = '';
+                stateField.value = '';
+            }
+        });
+    
+        addressForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const newAddress = {};
+            formData.forEach((value, key) => {
+                newAddress[key] = value;
+            });
+            savedAddresses.push(newAddress);
+            renderSavedAddresses();
+            addressForm.reset(); // Clear the form after saving
+            alert('Address saved!'); // Basic feedback
+        });
+    
+        // Implement these functions for Edit, Remove, and Deliver Here functionality
+        window.editAddress = function(index) {
+            const addressToEdit = savedAddresses[index];
+            // Populate the form with the address details for editing
+            document.getElementById('name').value = addressToEdit.name;
+            document.getElementById('mobile').value = addressToEdit.mobile;
+            document.getElementById('pincode').value = addressToEdit.pincode;
+            document.getElementById('locality').value = addressToEdit.locality;
+            document.getElementById('address').value = addressToEdit.address;
+            document.getElementById('landmark').value = addressToEdit.landmark;
+            document.getElementById('city').value = addressToEdit.city;
+            document.getElementById('state').value = addressToEdit.state;
+            document.querySelector(input[name="addressType"][value="${addressToEdit.type}"]).checked = true;
+    
+            // You might want to change the "Save Address" button text to "Update Address"
+            // and handle the update logic separately. For simplicity, this example doesn't.
+        };
+    
+        window.removeAddress = function(index) {
+            if (confirm('Are you sure you want to remove this address?')) {
+                savedAddresses.splice(index, 1);
+                renderSavedAddresses();
+            }
+        };
+    
+        window.deliverHere = function(index) {
+            const selectedAddress = savedAddresses[index];
+            alert(`Delivering to: ${selectedAddress.name}, ${selectedAddress.address}, ${selectedAddress.city} - ${selectedAddress.pincode}`);
+            // In a real application, you would proceed to the next step in the checkout process
+            // with this selected address.
+        };
+    
+        // Initial rendering of saved addresses
+        renderSavedAddresses();
+    });</script>  
+
+    <footer class="bg-light text-light pt-5 pb-4">
+        <div class="container text-center text-md-start">
+          <div class="row">
+    
+            <!-- Logo & About -->
+            <div class="col-md-3">
+              <a class="navbar-brand" href="#">
+                <img class="svglogo" src="../assets/img/Vn cafe big.png" height="60" width="60" />
+                <img class="svglogo pt-2" src="../assets/VNcafe1.svg" />
+              </a>
+              <!-- <p class="text-muted">Delivering perfectly roasted coffee with rich, authentic flavor.</p> -->
+            </div>
+    
+            <!-- Quick Links -->
+            <div class="col-md-3">
+              <h5 class="fw-bold text-muted">Quick Links</h5>
+              <ul class="list-unstyled text-muted">
+                <li><a href="index.html" class="text-muted text-decoration-none">Home</a></li>
+                <li><a href="menu.html" class="text-muted text-decoration-none">Menu</a></li>
+                <li><a href="event.html" class="text-muted text-decoration-none">Event</a></li>
+                <li><a href="about.html" class="text-muted text-decoration-none">About</a></li>
+                <li><a href="contact.html" class="text-muted text-decoration-none">Contact</a></li>
+              </ul>
+            </div>
+    
+            <!-- Contact Info -->
+            <div class="col-md-3">
+              <h5 class="fw-bold text-muted">Contact Us</h5>
+              <p class="text-muted">
+                📍 123 Coffee St, City, Country <br>
+                📞 +123 456 7890 <br>
+                📧 hello@vncafe.com
+              </p>
+            </div>
+    
+            <!-- Newsletter & Social Media -->
+            <div class="col-md-3">
+              <h5 class="fw-bold text-muted">Stay Connected</h5>
+              <div class="d-flex gap-3 mb-3">
+                <a href="#" class="text-muted fs-5"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-muted fs-5"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-muted fs-5"><i class="bi bi-twitter"></i></a>
+              </div>
+              <form>
+                <input type="email" class="form-control mb-2" placeholder="Enter your email">
+                <button class="btn btn-warning w-100">Subscribe</button>
+              </form>
+            </div>
+    
+          </div>
+    
+          <!-- Copyright -->
+          <div class="text-center text-muted mt-4 border-top pt-3">
+            &copy; 2025 VN Cafe. All Rights Reserved.
+          </div>
+        </div>
+      </footer>
+</body>
+</html>

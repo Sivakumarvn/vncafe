@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <welcome-file-list>
+        <welcome-file>signup.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>home.jsp</welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>SigninPageServlet</servlet-name>
+        <servlet-class>com.vncafe.servlet.SigninPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SigninPageServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+
+    <!-- Signin POST -->
+    <servlet>
+        <servlet-name>SigninServlet</servlet-name>
+        <servlet-class>com.vncafe.servlet.SigninServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SigninServlet</servlet-name>
+        <url-pattern>/api/signin</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>MenuServlet</servlet-name>
+        <servlet-class>com.vncafe.servlet.MenuServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MenuServlet</servlet-name>
+        <url-pattern>/api/menu</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>com.vncafe.servlet.OrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/api/order</url-pattern>
+    </servlet-mapping>
+    <!-- Signup POST -->
+    <servlet>
+        <servlet-name>SignupServlet</servlet-name>
+        <servlet-class>com.vncafe.servlet.SignupServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignupServlet</servlet-name>
+        <url-pattern>/api/signup</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.vncafe.servlet.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/api/user</url-pattern>
+    </servlet-mapping>
+</web-app>
