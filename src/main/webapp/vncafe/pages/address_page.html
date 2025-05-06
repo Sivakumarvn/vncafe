@@ -115,41 +115,16 @@
             </div>
     </div>
 
-     <!-- <script src="script.js"></script> -->
         <script>document.addEventListener('DOMContentLoaded', function() {
         const pincodeField = document.getElementById('pincode');
         const cityField = document.getElementById('city');
         const stateField = document.getElementById('state');
         const addressForm = document.getElementById('addressForm');
         const savedAddressesList = document.getElementById('savedAddressesList');
-    
-        // Sample saved addresses (replace with actual data fetching)
+
         let savedAddresses = [
-            // {
-            //     name: 'John Doe',
-            //     mobile: '9876543210',
-            //     pincode: '110001',
-            //     locality: 'Connaught Place',
-            //     address: 'XYZ Building, ABC Road',
-            //     landmark: 'Near Central Park',
-            //     city: 'New Delhi',
-            //     state: 'Delhi',
-            //     type: 'Home'
-            // },
-            // {
-            //     name: 'Jane Smith',
-            //     mobile: '8765432190',
-            //     pincode: '560001',
-            //     locality: 'MG Road',
-            //     address: 'PQR Apartment, LMN Street',
-            //     landmark: 'Opposite Garuda Mall',
-            //     city: 'Bangalore',
-            //     state: 'Karnataka',
-            //     type: 'Work'
-            // }
+
         ];
-    
-        // Function to display saved addresses
         function renderSavedAddresses() {
             savedAddressesList.innerHTML = '';
             if (savedAddresses.length > 0) {
@@ -175,14 +150,10 @@
                 savedAddressesList.innerHTML = '<p>No saved addresses.</p>';
             }
         }
-    
-        // Simulate fetching city and state based on pincode (replace with API call)
+
         pincodeField.addEventListener('input', function() {
             const pincode = this.value;
             if (pincode.length === 6 && /^[0-9]+$/.test(pincode)) {
-                // In a real application, you would make an API call here
-                // to get city and state based on the pincode.
-                // For this example, we'll use a simple mapping.
                 if (pincode.startsWith('110')) {
                     cityField.value = 'New Delhi';
                     stateField.value = 'Delhi';
@@ -211,14 +182,12 @@
             });
             savedAddresses.push(newAddress);
             renderSavedAddresses();
-            addressForm.reset(); // Clear the form after saving
-            alert('Address saved!'); // Basic feedback
+            addressForm.reset();
+            alert('Address saved!');
         });
-    
-        // Implement these functions for Edit, Remove, and Deliver Here functionality
+
         window.editAddress = function(index) {
             const addressToEdit = savedAddresses[index];
-            // Populate the form with the address details for editing
             document.getElementById('name').value = addressToEdit.name;
             document.getElementById('mobile').value = addressToEdit.mobile;
             document.getElementById('pincode').value = addressToEdit.pincode;
@@ -229,8 +198,6 @@
             document.getElementById('state').value = addressToEdit.state;
             document.querySelector(input[name="addressType"][value="${addressToEdit.type}"]).checked = true;
     
-            // You might want to change the "Save Address" button text to "Update Address"
-            // and handle the update logic separately. For simplicity, this example doesn't.
         };
     
         window.removeAddress = function(index) {
@@ -243,11 +210,7 @@
         window.deliverHere = function(index) {
             const selectedAddress = savedAddresses[index];
             alert(`Delivering to: ${selectedAddress.name}, ${selectedAddress.address}, ${selectedAddress.city} - ${selectedAddress.pincode}`);
-            // In a real application, you would proceed to the next step in the checkout process
-            // with this selected address.
         };
-    
-        // Initial rendering of saved addresses
         renderSavedAddresses();
     });</script>  
 
@@ -308,5 +271,71 @@
           </div>
         </div>
       </footer>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+      <script src="/vncafe/vncafe/pages/main.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+        
+    <script>
+      //  profile icon show user details
+    
+      const user = JSON.parse(localStorage.getItem("user"));
+      const token = localStorage.getItem("token");
+    
+      const navProfileBtn = document.getElementById("navProfileBtn");
+      const signDivBtn = document.getElementById("signDivBtn");
+    
+      if (user && token) {
+        if (signDivBtn) {
+          signDivBtn.classList.add("d-none");
+        }
+        if (navProfileBtn) {
+          navProfileBtn.classList.remove("d-none");
+    
+          navProfileBtn.innerHTML = `
+            <div class="position-relative" style="display: inline-block;">
+              <img src="/vncafe/vncafe/assets/person-circle.svg" role="button" id="profileToggle" width="40" height="40" class="rounded-circle" alt="Profile">
+              <div id="profileCard" class="d-none position-absolute end-0 mt-2 p-3 bg-white shadow" style="width: 250px; z-index: 1000; border-radius: 8px;">
+                <img src='/vncafe/vncafe/assets/img/demoprofileimage.jpeg' width="100" height="100" class="rounded-circle pb-2 user_profile_img" alt="User_profile_img"/>
+                <p class="fw-bold mb-1">User Name: ${user.username}</p>
+                <p class="text-muted small mb-2"> Email: ${user.email}</p>
+                <button id="logoutBtn" class="btn btn-sm btn-danger all-btn w-100">Logout</button>
+              </div>
+            </div>
+          `;
+    
+          const profileToggle = document.getElementById("profileToggle");
+          const profileCard = document.getElementById("profileCard");
+          const logoutBtn = document.getElementById("logoutBtn");
+    
+          if (profileToggle && profileCard) {
+            profileToggle.addEventListener("click", () => {
+              profileCard.classList.toggle("d-none");
+            });
+          }
+          document.addEventListener("click", (e) => {
+            if (!navProfileBtn.contains(e.target)) {
+              if (profileCard) {
+                profileCard.classList.add("d-none");
+              }
+            }
+          });
+    
+          if (logoutBtn) {
+            logoutBtn.addEventListener("click", () => {
+              localStorage.removeItem("user");
+              localStorage.removeItem("token");
+              window.location.href = "/vncafe/vncafe/pages/index.html";
+            });
+          }
+        }
+      } else {
+        if (navProfileBtn) navProfileBtn.classList.add("d-none");
+        if (signDivBtn) signDivBtn.classList.remove("d-none");
+      }
+      </script>
 </body>
 </html>

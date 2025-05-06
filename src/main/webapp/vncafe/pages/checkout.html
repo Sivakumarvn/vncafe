@@ -1,16 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Welcome to VN Cafe</title>
-    <link rel="icon" type="image/x-icon" href="/vncafe/vncafe/favicon_io/favicon.ico">
-    <link rel="stylesheet" href="/vncafe/vncafe/pages/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@700&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-  </head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout</title>
+  <link rel="icon" type="image/x-icon" href="/vncafe/vncafe/favicon_io/favicon.ico">
+  <link rel="stylesheet" href="/vncafe/vncafe/pages/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .payment-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .payment-methods {
+        margin-top: 20px;
+      }
+      .payment-methods button {
+        width: 100%;
+        margin: 5px 0;
+      }
+      .payment-details {
+        display: none;
+        margin-top: 20px;
+      }
+      .payment-details input {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+      }
+    </style>
 <body>
   <header class="header sticky-top">
     <!-- Nav Bar section -->
@@ -61,51 +93,25 @@
       </div>
     </nav>
   </header>
-
-      <div class="container1 my-5">
-        <h1>Order Summary</h1>
-        <div class="order-details">
-            <h2>Items in Your Order</h2>
-            <div class="item orderitem">
-                <img  alt=""/>
-                <div class="item-info">
-                    <div class="item-name"></div>
-                    <div class="item-price"></div>
-                    <div></div>
-                </div>
-            </div>
-            </div>
-
-        <div class="price-details">
-            <h2>Price Details</h2>
-            <div class="price-item">
-                <span></span>
-                <span></span>
-            </div>
-            <div class="price-item">
-                <span>Delivery Charges</span>
-                <span>₹49.00</span>
-            </div>
-            <!-- <div class="total">
-                <span>Total</span>
-                <span>₹997</span>
-            </div> -->
-        </div>
-
-        <div class="address-details">
-            <h3>Shipping Address</h3>
-            <p>John Doe</p>
-            <p>123 Main Street, Anytown</p>
-            <p>India, 123456</p>
-        </div>
-
-        <!-- <button href="..\pages\payment page.html" class="button">Continue</button>
-        <button type="button" class="btn btn-secondary">Cancel</button> -->
-
-        <a href="..\pages\payment page.html" class="btn btn-brand navBtn" ><span>Continue</span></a>
-        <a href="..\pages\address page.html" class="btn btn-brand navBtn" ><span>Cancel</span></a>
-
+  <div class="container my-5">
+    <h2 class="text-center mb-4">Your Cart</h2>
+  
+    <div id="cartItemsContainer"></div>
+  
+    <div class="d-flex justify-content-between align-items-center cart-summary mt-4">
+      <div>Total Items: <span id="totalItemsCount">0</span></div>
+      <div>Total Price: ₹<span id="totalPrice">0.00</span></div>
     </div>
+  
+    <div class="text-center mt-4">
+      <button id="checkoutButton" class="btn btn-primary px-4">Proceed to Checkout</button>
+    </div>
+  </div>
+  
+
+  
+
+  
     <footer class="bg-light text-light pt-5 pb-4">
     <div class="container text-center text-md-start">
       <div class="row">
@@ -163,31 +169,238 @@
       </div>
     </div>
   </footer>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="/vncafe/vncafe/pages/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
     <script>
-        // Basic JavaScript for potential dynamic updates (e.g., updating total)
-        // In a real application, this would interact with backend data.
-        const quantityElements = document.querySelectorAll('.item-info div:last-child');
-        const priceElements = document.querySelectorAll('.item-price');
-        const subtotalElement = document.querySelector('.price-item span:nth-child(2)');
-        const discountElement = document.querySelector('.price-item span:nth-child(2)'); // Assuming a fixed discount for now
-        const deliveryChargeElement = document.querySelector('.price-item span:nth-child(2)');
-        const totalElement = document.querySelector('.total span:nth-child(2)');
+        // // Basic JavaScript for potential dynamic updates (e.g., updating total)
+        // // In a real application, this would interact with backend data.
+        // const quantityElements = document.querySelectorAll('.item-info div:last-child');
+        // const priceElements = document.querySelectorAll('.item-price');
+        // const subtotalElement = document.querySelector('.price-item span:nth-child(2)');
+        // const discountElement = document.querySelector('.price-item span:nth-child(2)'); // Assuming a fixed discount for now
+        // const deliveryChargeElement = document.querySelector('.price-item span:nth-child(2)');
+        // const totalElement = document.querySelector('.total span:nth-child(2)');
 
-        let subtotal = 0;
-        priceElements.forEach(price => {
-            subtotal += parseFloat(price.textContent.replace('₹', ''));
+        // let subtotal = 0;
+        // priceElements.forEach(price => {
+        //     subtotal += parseFloat(price.textContent.replace('₹', ''));
+        // });
+        // subtotalElement.textContent = `₹${subtotal.toFixed(2)}`;
+
+        // const discount = 500; // Example discount
+        // discountElement.textContent = `-₹${discount.toFixed(2)}`;
+
+        // const deliveryCharge = 49; // Example delivery charge
+        // deliveryChargeElement.textContent = `₹${deliveryCharge.toFixed(2)}`;
+
+        // const total = subtotal - discount + deliveryCharge;
+        // totalElement.textContent = `₹${total.toFixed(2)}`;
+
+        
+  //  profile icon show user details
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("token");
+
+  const navProfileBtn = document.getElementById("navProfileBtn");
+  const signDivBtn = document.getElementById("signDivBtn");
+
+  if (user && token) {
+    if (signDivBtn) {
+      signDivBtn.classList.add("d-none");
+    }
+    if (navProfileBtn) {
+      navProfileBtn.classList.remove("d-none");
+
+      navProfileBtn.innerHTML = `
+        <div class="position-relative" style="display: inline-block;">
+          <img src="/vncafe/vncafe/assets/person-circle.svg" role="button" id="profileToggle" width="40" height="40" class="rounded-circle" alt="Profile">
+          <div id="profileCard" class="d-none position-absolute end-0 mt-2 p-3 bg-white shadow" style="width: 250px; z-index: 1000; border-radius: 8px;">
+            <img src='/vncafe/vncafe/assets/img/demoprofileimage.jpeg' width="100" height="100" class="rounded-circle pb-2 user_profile_img" alt="User_profile_img"/>
+            <p class="fw-bold mb-1">User Name: ${user.username}</p>
+            <p class="text-muted small mb-2"> Email: ${user.email}</p>
+            <button id="logoutBtn" class="btn btn-sm btn-danger all-btn w-100">Logout</button>
+          </div>
+        </div>
+      `;
+
+      const profileToggle = document.getElementById("profileToggle");
+      const profileCard = document.getElementById("profileCard");
+      const logoutBtn = document.getElementById("logoutBtn");
+
+      if (profileToggle && profileCard) {
+        profileToggle.addEventListener("click", () => {
+          profileCard.classList.toggle("d-none");
         });
-        subtotalElement.textContent = `₹${subtotal.toFixed(2)}`;
+      }
+      document.addEventListener("click", (e) => {
+        if (!navProfileBtn.contains(e.target)) {
+          if (profileCard) {
+            profileCard.classList.add("d-none");
+          }
+        }
+      });
 
-        const discount = 500; // Example discount
-        discountElement.textContent = `-₹${discount.toFixed(2)}`;
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+          window.location.href = "/vncafe/vncafe/pages/index.html";
+        });
+      }
+    }
+  } else {
+    if (navProfileBtn) navProfileBtn.classList.add("d-none");
+    if (signDivBtn) signDivBtn.classList.remove("d-none");
+  }
+  const checkoutButton = document.getElementById('checkoutButton');
 
-        const deliveryCharge = 49; // Example delivery charge
-        deliveryChargeElement.textContent = `₹${deliveryCharge.toFixed(2)}`;
+  if (checkoutButton){
+    checkoutButton.addEventListener('click',async function(){
+      const user = JSON.parse(localStorage.getItem("user"))
+      console.log(user);
+      const menuItems = JSON.parse(localStorage.getItem("menu_ids"));
+      if(menuItems || menuItems.length !== 0){
+        const orderData = {
+          user_id: parseInt(user.id),
+          order: {
+            menu:menuItems
+          }
+        };
+        const formData = new URLSearchParams();
+        formData.append("input_data", JSON.stringify(orderData));
+        try {
+          const response = await fetch("/vncafe/api/order",{
+            method:"POST",
+            headers:{
+              "Content-Type": "application/x-www-form-urlencoded",
+              Authorization:`Bearer ${token}`
+            },
+            body:formData.toString()
+          });
+          const data = await response.json();
+          console.log(data)
+        }
+        catch (error) {
+          if (errorMsg) errorMsg.textContent = error.message;
+          console.error("Error during login:", error);
+          }
+      }
+      else{
+        //Product not selected.
+      }
 
-        const total = subtotal - discount + deliveryCharge;
-        totalElement.textContent = `₹${total.toFixed(2)}`;
+    })
+
+  }
+          function getCartItems() {
+          return JSON.parse(localStorage.getItem("menu_ids")) || [];
+        }
+
+          function updateCartItemQuantity(productId, action) {
+          let cart = getCartItems();
+          const index = cart.findIndex(item => item.id === productId);
+          if (index !== -1) {
+          if (action === 'increase') {
+          cart[index].quantity++;
+        } else if (action === 'decrease') {
+          if (cart[index].quantity > 1) {
+          cart[index].quantity--;
+        } else {
+          cart.splice(index, 1);
+        }
+        }
+          localStorage.setItem("menu_ids", JSON.stringify(cart));
+          renderCartItems();
+        }
+        }
+
+          function renderCartItems() {
+          const menu = JSON.parse(localStorage.getItem("menu"));
+          console.log(typeof menu, menu.length);
+          const menu_ids= JSON.parse(localStorage.getItem("menu_ids"));
+          let filterMenu = menu?.filter(ele =>
+          menu_ids.some(itemB => itemB.id === ele.id)
+          );
+          console.log(filterMenu);
+          let priceAmt= filterMenu.map((ele,index)=> {
+          return menu_ids[index].quantity*ele.price
+        })
+          console.log(priceAmt)
+
+          const cartItems = getCartItems();
+          const token = localStorage.getItem('token')
+          const cartItemsContainer = document.getElementById('cartItemsContainer');
+          cartItemsContainer.innerHTML = '';
+          let totalPrice = 0;
+          let totalItems = 0;
+
+          if (cartItems.length === 0) {
+          cartItemsContainer.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+          document.getElementById('totalItemsCount').textContent = "0";
+          document.getElementById('totalPrice').textContent = "0.00";
+          return;
+        }
+
+          cartItems.forEach(item => {
+          const product = menu.find((p) => p.id === item.id);
+          if (!product) return;
+
+          totalPrice += product.price * item.quantity;
+          totalItems += item.quantity;
+
+          const div = document.createElement("div");
+          div.className = "cart-item d-flex justify-content-between align-items-center";
+
+          div.innerHTML = `
+              <div class="d-flex align-items-center gap-3">
+                <img src="${product.imgpath}" alt="${product.name}" width="60" height="60" style="object-fit:cover; border-radius: 8px;">
+                <div>
+                  <h5 class="mb-1">${product.name}</h5>
+                  <p class="mb-1">₹${product.price} x ${item.quantity}</p>
+                  <p class="text-muted small mb-0">Total: ₹${product.price * item.quantity}</p>
+                </div>
+              </div>
+              <div class="d-flex flex-column gap-2">
+                <button class="btn btn-sm btn-outline-danger decreaseQuantity" data-id="${item.id}">−</button>
+                <button class="btn btn-sm btn-outline-success increaseQuantity" data-id="${item.id}">+</button>
+              </div>
+            `;
+
+          cartItemsContainer.appendChild(div);
+        });
+
+          document.getElementById('totalItemsCount').textContent = totalItems;
+          document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+        }
+
+          document.addEventListener('click', function (e) {
+          if (e.target.classList.contains('increaseQuantity')) {
+          const productId = parseInt(e.target.getAttribute('data-id'));
+          updateCartItemQuantity(productId, 'increase');
+        }
+          if (e.target.classList.contains('decreaseQuantity')) {
+          const productId = parseInt(e.target.getAttribute('data-id'));
+          updateCartItemQuantity(productId, 'decrease');
+        }
+        });
+
+          document.getElementById('checkoutButton').addEventListener('click', function () {
+          const token = localStorage.getItem('token');
+          if (!token) {
+          alert('Please login first to continue.');
+          window.location.href = '/vncafe/vncafe/pages/profile_accounts.html';
+        }
+        //  else {
+        //   window.location.href = '/vncafe/vncafe/pages/checkout.html';
+        // }
+        });
+
+          renderCartItems();
+
     </script>
 </body>
 </html>

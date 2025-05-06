@@ -56,13 +56,15 @@ public class SigninServlet extends HttpServlet {
                     userJson.put("role",rs.getString("Role"));
                     userJson.put("email",rs.getString("Email"));
                     userJson.put("auth_token",rs.getString("AuthToken"));
+                    userJson.put("address",rs.getString("Address")!=null?rs.getString("Address"):"");
+                    userJson.put("contact_no",rs.getString("ContactNumber")!=null?rs.getString("ContactNumber"):"");
                     responseJson.put("user",userJson);
                 }
             }
             rs.close();
             stmt.close();
-            conn.close();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
 

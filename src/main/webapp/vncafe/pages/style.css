@@ -337,10 +337,10 @@
             font-family: 'Spline Sans',sans-serif;
           }
 /* Menu page start */
-      .menubody {
+      /* .menubody {
         font-family: 
         background-color: #f7f7f7;
-      }
+      } */
       .menu-card {
         border: none;
         height: auto;
@@ -358,9 +358,10 @@
         object-fit: cover;
       }
       .nav-tabs .nav-link.active {
-        background-color: #ff7e57 !important;
+        background-color: #ff4d4de3 !important;
         color: #000000 !important;
         border: none;
+        font-weight: 600;
       }
       .nav-tabs .nav-link {
         color: #ff1e1e;
@@ -378,6 +379,7 @@
         font-weight: 600;
       }
 /* About style */
+
 .aboutHero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085');
   background-size: cover;
@@ -522,13 +524,6 @@ margin-top: 30px;
   color: #999999;
 }
 /* Profile Icon */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
 .main-content {
   display: flex;
   flex-direction: column;
@@ -575,7 +570,7 @@ margin-top: 30px;
 }
 
 .btn-signin, .btn-signup {
-  background-color: var(--btn-color);
+  background-color: var(--btn-color) !important;
   color: white;
 }
 
@@ -601,6 +596,7 @@ a.btn.btn-primary {
   margin-left: 65px;
 }
 /* Profile Accounts */
+
   /* Fullscreen Video Background */
   .bg-video {
     position: fixed;
@@ -621,15 +617,21 @@ a.btn.btn-primary {
     background: rgba(0, 0, 0, 0.4);
     z-index: -1;
   }
-
-   /*Glass Card*/
-  .glass-card {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: rgba(255, 255, 255, 0.14);
+  .glass-card{
+   max-width: 450px;
+   width:100%;
+   position: relative;
+   background: rgba(255, 255, 255, 0.1) !important;
+   border-radius: 10px !important; 
+   overflow: hidden !important; 
+   backdrop-filter: blur(3px) !important; 
+   -webkit-backdrop-filter: blur(3px) !important;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+   padding: 20px !important;
   }
+
+
+
 /*order page design*/
 
 .container1 {

@@ -75,10 +75,10 @@
 
     <!-- Packages Section -->
     <section class="py-5" id="packages">
-        <div class="container">
+        <div class="container" id="container">
             <h2 class="text-center mb-5" data-aos="fade-up" data-aos-delay="200">Our Packages</h2>
-            <div class="row"> 
-                <div class="col-md-4 mb-4" data-aos="fade-right" data-aos-delay="300">
+            <div class="row" id="packageItem"> 
+                <!-- <div class="col-md-4 mb-4" data-aos="fade-right" data-aos-delay="300" id="basic">
                     <div class="card feature-card w-100">
                         <div class="card-body">
                             <h5 class="card-title">Basic Package</h5>
@@ -88,12 +88,14 @@
                                 <li>Basic decorations</li>
                                 <li>Birthday cake</li>
                                 <li>2-hour event duration</li>
+                                <li> </li>
+                                <li> </li>
                             </ul>
                             <a href="#booking" class="btn btn-outline-primary">Select Package</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4" data-aos="fade-right" data-aos-delay="400">
+                <div class="col-md-4 mb-4" data-aos="fade-right" data-aos-delay="400" id="premium">
                     <div class="card feature-card w-100">
                         <div class="card-body">
                             <h5 class="card-title">Premium Package</h5>
@@ -102,14 +104,15 @@
                                 <li>Up to 50 guests</li>
                                 <li>Premium decorations</li>
                                 <li>Custom cake</li>
-                                <li>4-hour event duration</li>
                                 <li>Photography service</li>
+                                <li>4-hour event duration</li>
+                                <li></li>
                             </ul>
                             <a href="#booking" class="btn btn-outline-primary">Select Package</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4" data-aos="fade-right" data-aos-delay="550">
+                <div class="col-md-4 mb-4" data-aos="fade-right" data-aos-delay="550" id="deluxe">
                     <div class="card feature-card w-100">
                         <div class="card-body">
                             <h5 class="card-title">Deluxe Package</h5>
@@ -118,14 +121,14 @@
                                 <li>Up to 100 guests</li>
                                 <li>Luxury decorations</li>
                                 <li>Custom theme cake</li>
-                                <li>6-hour event duration</li>
                                 <li>Photography & Video</li>
                                 <li>Entertainment included</li>
-                            </ul>
+                                <li>6-hour event duration</li>
+                              </ul>
                             <a href="#booking" class="btn btn-outline-primary">Select Package</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -155,17 +158,13 @@
                                 <input type="date" class="form-control" id="date" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="package" class="form-label">Select Package</label>
-                                <select class="form-select" id="package" required>
+                                <label for="package" class="form-label text" >Select Package</label>
+                                <select class="form-select" id="package" required readonly>
                                     <option value="">Choose...</option>
                                     <option value="basic">Basic Package</option>
                                     <option value="premium">Premium Package</option>
                                     <option value="deluxe">Deluxe Package</option>
                                 </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="guests" class="form-label">Number of Guests</label>
-                                <input type="number" class="form-control" id="guests" required min="1">
                             </div>
                             <div class="col-12">
                                 <label for="message" class="form-label">Special Requirements</label>
@@ -182,15 +181,15 @@
     </section>
   </main>
     <!-- Footer -->
-    <footer class="bg-light text-light pt-5 pb-4">
+    <footer class="bg-muted text-light pt-5 pb-4">
         <div class="container text-center text-md-start">
           <div class="row">
     
             <!-- Logo & About -->
             <div class="col-md-3">
               <a class="navbar-brand" href="#">
-                <img class="svglogo" src="/vncafe/vncafe/assets/img/Vn cafe big.png" height="60" width="60" />
-                <img class="svglogo pt-2" src="/vncafe/vncafe/assets/VNcafe1.svg" />
+                <img class="svglogo" src="/vncafe/vncafe/assets/img/Vn cafe big.png" height="60" width="60" alt="logo" />
+                <img class="svglogo pt-2" src="/vncafe/vncafe/assets/VNcafe1.svg" alt="logoname" />
               </a>
               <!-- <p class="text-muted">Delivering perfectly roasted coffee with rich, authentic flavor.</p> -->
             </div>
@@ -227,7 +226,7 @@
               </div>
               <form>
                 <input type="email" class="form-control mb-2" placeholder="Enter your email">
-                <button class="btn btn-warning w-100">Subscribe</button>
+                <button type="submit" class="btn btn-warning w-100">Subscribe</button>
               </form>
             </div>
     

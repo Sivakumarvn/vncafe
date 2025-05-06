@@ -15,8 +15,7 @@
 <body class="bg-light d-flex flex-column min-vh-100">
     <!-- Background Video -->
 <video autoplay muted loop playsinline class="position-fixed w-100 h-100 object-fit-cover z-n1 bg-video">
-    <source src="/vncafe/vncafe/assets/coffee-video.mp4" type="video/mp4" />
-    Your browser does not support HTML5 video.
+    <source src="/vncafe/vncafe/assets/coffee-video1.mp4" type="video/mp4" />
   </video>
   <div class="overlay"></div>
 
@@ -34,7 +33,7 @@
   
     <!-- Login/Signup Card -->
     <main class="flex-grow-1 d-flex align-items-center justify-content-center py-5">
-      <div class="card shadow p-4 rounded-4 glass-card" style="max-width: 450px; width: 100%;">
+      <div class="card shadow p-4 rounded-4 glass-card">
         <ul class="nav nav-tabs mb-3" id="authTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login"
@@ -51,11 +50,11 @@
           <div class="tab-pane fade show active" id="login" role="tabpanel">
             <form method="POST">
               <div class="mb-3">
-                <label for="loginUsername" class="form-label">Email</label>
+                <label for="loginUsername" class="form-label fw-bold">Email</label>
                 <input type="text" class="form-control" id="loginUsername" name="username" required />
               </div>
               <div class="mb-3">
-                <label for="loginPassword" class="form-label">Password</label>
+                <label for="loginPassword" class="form-label fw-bold">Password</label>
                 <input type="password" class="form-control" id="loginPassword" name="password" required />
               </div>
               <p id="errorMsg" class="text-danger"></p>
@@ -66,22 +65,22 @@
           <!-- Signup Form -->
           <div class="tab-pane fade" id="signup" role="tabpanel">
             <form method="POST">
-              <p id="errorMsg" class="text-danger"> </p>
+              <p id="errorMsg1" class="text-danger"> </p>
                 <div class="mb-3">
-                  <label for="signupUsername" class="form-label">Username</label>
+                  <label for="signupUsername" class="form-label fw-bold">Username</label>
                   <input type="text" class="form-control" id="signupUsername" name="username" required />
                 </div>
-              <div class="mb-3">
-                <label for="signupEmail" class="form-label">Email</label>
+              <div class="mb-3"> 
+                <label for="signupEmail" class="form-label fw-bold">Email</label>
                 <input type="email" class="form-control" id="signupEmail" name="email" required />
               </div>
               <p id="mailErrorMsg" class="text-danger"> </p>
               <div class="mb-3">
-                <label for="signupPassword" class="form-label">Password</label>
+                <label for="signupPassword" class="form-label fw-bold">Password</label>
                 <input type="password" class="form-control" id="signupPassword" name="password" required />
               </div>
               <div class="mb-3">
-                <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                <label for="signupConfirmPassword" class="form-label fw-bold">Confirm Password</label>
                 <input type="password" class="form-control" id="signupConfirmPassword" name="password" required />
               </div>
               <p id="pwdErrorMsg" class="text-danger"> </p>

@@ -32,6 +32,7 @@ public class OrderServlet extends HttpServlet {
         }
         if (isValidToken) {
             JSONObject input_data = new JSONObject(request.getParameter("input_data"));
+            System.out.println("ORDER DATA: " + input_data);
             int userId = input_data.optInt("user_id");
             try(Connection conn = apiUtils.getConnection(DB_URL,DB_USER,DB_PASSWORD)) {
                 if (userId == 0) {
@@ -112,7 +113,8 @@ public class OrderServlet extends HttpServlet {
                 response.getWriter().write(responseJson.toString());
                 throw new RuntimeException(e);
             }
-        } else{
+        }
+        else{
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             responseStatus.put("status", "failed");
             responseStatus.put("message", "Invalid token! Please Login.");
@@ -124,8 +126,7 @@ public class OrderServlet extends HttpServlet {
 
 
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         JSONObject responseJson = new JSONObject();
         JSONObject responseStatus = new JSONObject();
         boolean isValidToken;
@@ -217,7 +218,8 @@ public class OrderServlet extends HttpServlet {
                 responseJson.put("response_status", responseStatus);
                 response.getWriter().write(responseJson.toString());
             }
-        }else{
+        }
+        else{
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             responseStatus.put("status", "failed");
             responseStatus.put("message", "Invalid token! Please Login.");

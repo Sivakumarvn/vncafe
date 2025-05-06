@@ -27,21 +27,63 @@ public class MenuServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         JSONObject responseJson = new JSONObject();
         JSONObject responseStatus = new JSONObject();
+        JSONObject input_data = new JSONObject();
+        if(request.getParameter("input_data") != null) {
+            System.out.println(request.getParameter("input_data"));
+            input_data = new JSONObject(request.getParameter("input_data"));
+        }
+        System.out.println(input_data);
         try(Connection conn = apiUtils.getConnection(DB_URL,DB_USER,DB_PASSWORD)) {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM menu");
             JSONArray menuArray = new JSONArray();
-            while (rs.next()) {
-                JSONObject menuJson = new JSONObject();
-                menuJson.put("id", rs.getInt("id"));
-                menuJson.put("name", rs.getString("name"));
-                menuJson.put("description", rs.getString("description"));
-                menuJson.put("price", rs.getDouble("price"));
-                menuJson.put("category", rs.getString("category"));
-                menuJson.put("imgpath", rs.getString("imgPath"));
-                menuJson.put("stock_count", rs.getInt("stockCount"));
-                menuJson.put("available", rs.getBoolean("available"));
-                menuArray.put(menuJson);
+            PreparedStatement stmt;
+            ResultSet rs;
+            if(!input_data.isEmpty()) {
+                JSONArray ids = input_data.optJSONArray("ids");
+//                System.out.println("ids: " + ids);
+                if(ids != null) {
+                    for(int i = 0; i < ids.length(); i++) {
+                        JSONObject menu = ids.optJSONObject(i);
+                        stmt = conn.prepareStatement("SELECT * FROM menu where id = ?");
+                        stmt.setInt(1, menu.getInt("id"));
+                        rs = stmt.executeQuery();
+                        if(rs.next()) {
+                            JSONObject menuJson = new JSONObject();
+                            menuJson.put("id", rs.getInt("id"));
+                            menuJson.put("name", rs.getString("name"));
+                            menuJson.put("description", rs.getString("description"));
+                            menuJson.put("price", rs.getDouble("price"));
+                            menuJson.put("category", rs.getString("category"));
+                            menuJson.put("imgpath", rs.getString("imgPath"));
+                            menuJson.put("stock_count", rs.getInt("stockCount"));
+                            menuJson.put("available", rs.getBoolean("available"));
+                            menuArray.put(menuJson);
+                        }
+                    }
+                }
+                else{
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    responseStatus.put("status", "failed");
+                    responseStatus.put("status_code", ResponseStatusCode.MANDATORY_FIELD_MISSING);
+                    responseJson.put("response_status", responseStatus);
+                    out.print(responseJson);
+                    return;
+                }
+            }
+            else{
+                stmt = conn.prepareStatement("SELECT * FROM menu");
+                rs = stmt.executeQuery();
+                while (rs.next()) {
+                    JSONObject menuJson = new JSONObject();
+                    menuJson.put("id", rs.getInt("id"));
+                    menuJson.put("name", rs.getString("name"));
+                    menuJson.put("description", rs.getString("description"));
+                    menuJson.put("price", rs.getDouble("price"));
+                    menuJson.put("category", rs.getString("category"));
+                    menuJson.put("imgpath", rs.getString("imgPath"));
+                    menuJson.put("stock_count", rs.getInt("stockCount"));
+                    menuJson.put("available", rs.getBoolean("available"));
+                    menuArray.put(menuJson);
+                }
             }
             responseStatus.put("status", "success");
             responseStatus.put("status_code", ResponseStatusCode.OK);
@@ -78,7 +120,8 @@ public class MenuServlet extends HttpServlet {
                 responseStatus.put("status", "failed");
                 responseStatus.put("status_code", ResponseStatusCode.NOT_UNIQUE);
                 responseStatus.put("message", "Product already exists");
-            } else {
+            }
+            else {
                 stmt = conn.prepareStatement(
                         "INSERT INTO menu (name, description, price, category,stockCount,imgPath) VALUES (?, ?, ?, ?,?,?)"
                 );
